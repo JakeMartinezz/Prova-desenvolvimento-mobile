@@ -1,6 +1,9 @@
 # 🚀 Estudo dirigido UTP 2025-1
 
-Este repositório contém três projetos desenvolvido utilizando Dart, referente a um trabalho da Universidade Tuiuti do Paraná. a seguir, você encontrará um guia passo a passo interativo para abrir o projeto em seu ambiente local.
+Este repositório contém três projetos desenvolvidos utilizando Dart, referente a um trabalho da Universidade Tuiuti do Paraná. A seguir, você encontrará um guia passo a passo interativo para abrir o projeto em seu ambiente local.
+
+Para uma descrição técnica detalhada dos componentes utilizados nos protótipos, consulte o arquivo de [instruções](prova01/prova01.md).
+
 
 ## Pré-requisitos
 
@@ -16,13 +19,13 @@ git clone https://github.com/JakeMartinezz/Prova-desenvolvimento-mobile
 
 ## Passo 2️⃣: Acesse o compilador Dart para executar os protótipos
 
-No diretorio prova01, há 3 prototipos que são
+No diretório `prova01`, há 3 protótipos que são:
 
 - [x] Perfil de Artista
 - [x] Restaurante Japonês
 - [x] Calculadora de IMC
 
-## Passo 3️⃣ : Modificar o projeto
+## Passo 3️⃣: Modificar o projeto
 
 Agora que você tem o projeto em execução, é possível fazer modificações no código conforme necessário. Sinta-se à vontade para explorar e adaptar o projeto de acordo com suas necessidades.
 
@@ -30,8 +33,8 @@ Agora que você tem o projeto em execução, é possível fazer modificações n
 
 Se desejar publicar suas modificações em um repositório remoto no GitHub, siga estes passos:
 
-1️⃣ Crie um novo repositório vazio no GitHub.
-2️⃣ No terminal, navegue até o diretório raiz do projeto.
+1️⃣ Crie um novo repositório vazio no GitHub.  
+2️⃣ No terminal, navegue até o diretório raiz do projeto.  
 3️⃣ Execute os seguintes comandos:
 
 ```bash
@@ -43,4 +46,6 @@ git push -u origin master
 
 Isso configurará o repositório remoto e enviará suas modificações para lá.
 
-🎉 Este é um projeto institucional referente a materia desenvolvimento mobile, do docente Chauã Barbosa da Silva! 😄
+## Considerações finais
+
+🎉 Este é um projeto institucional referente à matéria de desenvolvimento mobile, do docente Chauã Barbosa da Silva! 😄
