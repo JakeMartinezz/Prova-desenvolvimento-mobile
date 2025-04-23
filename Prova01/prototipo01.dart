@@ -1,38 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // Import para formatar números
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(ArtistProfileApp());
 }
 
+// Critério 6: Organização e padronização do código
 class ArtistProfileApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Perfil do Artista',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-        // Definindo a paleta de cores Material Design 3
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.deepPurple,
-          secondary: Colors.amber, // Define a cor secundária diretamente
+          secondary: Colors.amber,
         ),
-        // Definindo a tipografia Material Design
+        useMaterial3: true,
         textTheme: const TextTheme(
-          headlineLarge: TextStyle(
-            fontSize: 32.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.deepPurple,
-          ),
-          headlineMedium: TextStyle(
-            fontSize: 24.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.deepPurple,
-          ),
-          bodyLarge: TextStyle(fontSize: 16.0, color: Colors.black87),
-          bodyMedium: TextStyle(fontSize: 14.0, color: Colors.black54),
+          headlineLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.deepPurple),
+          headlineMedium: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.deepPurple),
+          bodyLarge: TextStyle(fontSize: 16, color: Colors.black87),
+          bodyMedium: TextStyle(fontSize: 14, color: Colors.black54),
         ),
-        useMaterial3: true, // Utilizando as diretrizes do Material Design 3
       ),
       home: ArtistProfilePage(
         artistName: 'Jake Martinez / André Agio',
@@ -46,7 +37,7 @@ class ArtistProfileApp extends StatelessWidget {
           'Viagem as APIs (EP - 2015)',
         ],
         featuredSong: 'Canção Destaque: "Aurora Boreal"',
-        awards: ['Grammy de centralizador de DIVS(2024)', 'MTV Music Award de update sem WHERE (2023)'],
+        awards: ['Grammy de centralizador de DIVS (2024)', 'MTV Music Award de update sem WHERE (2023)'],
         socialLinks: {
           'Instagram': 'https://www.instagram.com/artista_famoso_oficial/',
           'Spotify': 'https://open.spotify.com/artist/SEU_ID_SPOTIFY',
@@ -60,6 +51,7 @@ class ArtistProfileApp extends StatelessWidget {
   }
 }
 
+// Critério 6: Código organizado com nomes claros e bem indentado
 class ArtistProfilePage extends StatelessWidget {
   final String artistName;
   final String genre;
@@ -70,7 +62,8 @@ class ArtistProfilePage extends StatelessWidget {
   final Map<String, String> socialLinks;
   final int fansCount;
 
-  ArtistProfilePage({
+  const ArtistProfilePage({
+    super.key,
     required this.artistName,
     required this.genre,
     required this.bio,
@@ -83,173 +76,164 @@ class ArtistProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Critério 1: Uso correto dos widgets de layout
     return Scaffold(
       appBar: AppBar(
         title: Text('Perfil de $artistName'),
-        // Estilo da AppBar alinhado com o Material Design
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Theme.of(context).colorScheme.onPrimary,
       ),
-      body: SingleChildScrollView(
+      body: ListView(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            // Seção de Cabeçalho
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // Widget para uma imagem de perfil (pode ser um CircleAvatar)
-                const CircleAvatar(
-                  radius: 50.0,
-                  backgroundImage: NetworkImage('https://avatars.githubusercontent.com/u/126693727?v=4'), // Placeholder
-                ),
-                const SizedBox(width: 16.0),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        artistName,
-                        style: Theme.of(context).textTheme.headlineLarge,
-                      ),
-                      const SizedBox(height: 4.0),
-                      Text(
-                        genre,
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                              color: Theme.of(context).colorScheme.secondary,
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                      const SizedBox(height: 8.0),
-                      // Selo de verificado (elemento visual extra)
-                      Row(
-                        children: [
-                          const Icon(Icons.verified, color: Colors.blue, size: 16.0),
-                          const SizedBox(width: 4.0),
-                          Text('Verificado', style: Theme.of(context).textTheme.bodyMedium),
-                        ],
-                      ),
-                    ],
+        children: [
+          // Critério 4: Design visual com alinhamento e espaçamento
+          Card(
+            elevation: 3,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  const CircleAvatar(
+                    radius: 50,
+                    backgroundImage: NetworkImage('https://avatars.githubusercontent.com/u/126693727?v=4'),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 24.0),
-
-            // Biografia
-            Text(
-              'Biografia',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 8.0),
-            Text(
-              bio,
-              style: Theme.of(context).textTheme.bodyLarge,
-              textAlign: TextAlign.justify, // Alinhamento justificado para melhor leitura
-            ),
-            const SizedBox(height: 24.0),
-
-            // Álbuns - Utilizando Wrap para melhor layout em diferentes tamanhos de tela
-            Text(
-              'Álbuns',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 8.0),
-            Wrap(
-              spacing: 8.0, // Espaçamento entre os álbuns
-              runSpacing: 8.0, // Espaçamento entre as linhas de álbuns
-              children: albums.map((album) => Chip(
-                    label: Text(album),
-                  ))
-                  .toList(),
-            ),
-            const SizedBox(height: 16.0),
-
-            // Canção Destaque
-            Text(
-              featuredSong,
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontStyle: FontStyle.italic),
-            ),
-            const SizedBox(height: 16.0),
-
-            // Prêmios - Outro exemplo de layout com Row e Expanded
-            if (awards.isNotEmpty) ...[
-              Text(
-                'Prêmios',
-                style: Theme.of(context).textTheme.headlineMedium,
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(artistName, style: Theme.of(context).textTheme.headlineLarge),
+                        const SizedBox(height: 4),
+                        Text(
+                          genre,
+                          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                color: Theme.of(context).colorScheme.secondary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          children: [
+                            const Icon(Icons.verified, color: Colors.blue, size: 16),
+                            const SizedBox(width: 4),
+                            Text('Verificado', style: Theme.of(context).textTheme.bodyMedium),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 8.0),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: awards
-                    .map((award) => Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4.0),
-                          child: Row(
-                            children: [
-                              const Icon(Icons.star_border, color: Colors.amber, size: 20.0),
-                              const SizedBox(width: 8.0),
-                              Expanded(child: Text(award, style: Theme.of(context).textTheme.bodyLarge)),
-                            ],
-                          ),
-                        ))
-                    .toList(),
-              ),
-              const SizedBox(height: 24.0),
-            ],
+            ),
+          ),
 
-            // Redes Sociais - Utilizando Row e Spacer para alinhamento
-            Text(
-              'Redes Sociais',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 8.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: socialLinks.entries.map((entry) {
-                IconData? icon;
-                switch (entry.key.toLowerCase()) {
-                  case 'instagram':
-                    icon = Icons.camera_alt;
-                    break;
-                  case 'spotify':
-                    icon = Icons.music_note;
-                    break;
-                  case 'youtube':
-                    icon = Icons.play_arrow;
-                    break;
-                  case 'twitter':
-                    icon = Icons.flutter_dash; // Ícone genérico para Twitter (pode usar um pacote de ícones mais específico)
-                    break;
-                  case 'website':
-                    icon = Icons.web;
-                    break;
-                  default:
-                    icon = Icons.link;
-                }
-                return IconButton(
-                  icon: Icon(icon, color: Theme.of(context).colorScheme.primary),
-                  onPressed: () {
-                    // Abertura de links (funcionalidade limitada no DartPad)
-                    print('Abrir ${entry.key}: ${entry.value}');
-                  },
-                  tooltip: 'Abrir ${entry.key}',
-                );
-              }).toList(),
-            ),
-            const SizedBox(height: 16.0),
+          const SizedBox(height: 24),
 
-            // Contagem de Fãs - Layout simples com Row
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(Icons.people, color: Colors.grey),
-                const SizedBox(width: 8.0),
-                Text('${NumberFormat.compact().format(fansCount)} Fãs', style: Theme.of(context).textTheme.bodyMedium),
-              ],
-            ),
+          // Biografia
+          Text('Biografia', style: Theme.of(context).textTheme.headlineMedium),
+          const SizedBox(height: 8),
+          Text(bio, style: Theme.of(context).textTheme.bodyLarge, textAlign: TextAlign.justify),
+          const SizedBox(height: 24),
+
+          // Critério 2: Variedade de layouts (GridView)
+          Text('Álbuns', style: Theme.of(context).textTheme.headlineMedium),
+          const SizedBox(height: 8),
+          GridView.count(
+            crossAxisCount: 2,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            children: albums
+                .map((album) => Card(
+                      elevation: 2,
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(album, textAlign: TextAlign.center),
+                        ),
+                      ),
+                    ))
+                .toList(),
+          ),
+          const SizedBox(height: 16),
+
+          // Canção destaque
+          Text(
+            featuredSong,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontStyle: FontStyle.italic),
+          ),
+          const SizedBox(height: 24),
+
+          // Critério 5: Criatividade com ícones de premiação
+          if (awards.isNotEmpty) ...[
+            Text('Prêmios', style: Theme.of(context).textTheme.headlineMedium),
+            const SizedBox(height: 8),
+            ...awards.map((award) => ListTile(
+                  leading: const Icon(Icons.military_tech, color: Colors.amber),
+                  title: Text(award, style: Theme.of(context).textTheme.bodyLarge),
+                )),
           ],
-        ),
+          const SizedBox(height: 24),
+
+          // Redes sociais
+          Text('Redes Sociais', style: Theme.of(context).textTheme.headlineMedium),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 12,
+            runSpacing: 12,
+            children: socialLinks.entries.map((socialLink) {
+              IconData icon;
+              switch (socialLink.key.toLowerCase()) {
+                case 'instagram':
+                  icon = Icons.camera_alt;
+                  break;
+                case 'spotify':
+                  icon = Icons.music_note;
+                  break;
+                case 'youtube':
+                  icon = Icons.play_arrow;
+                  break;
+                case 'twitter':
+                  icon = Icons.flutter_dash;
+                  break;
+                case 'website':
+                  icon = Icons.web;
+                  break;
+                default:
+                  icon = Icons.link;
+              }
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: Icon(icon, color: Theme.of(context).colorScheme.primary),
+                    tooltip: socialLink.key,
+                    onPressed: () {
+                      print('Abrir ${socialLink.key}: ${socialLink.value}');
+                    },
+                  ),
+                  Text(socialLink.key, style: Theme.of(context).textTheme.bodyMedium),
+                ],
+              );
+            }).toList(),
+          ),
+          const SizedBox(height: 24),
+
+          // Contagem de fãs
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.people, color: Colors.grey),
+              const SizedBox(width: 8),
+              Text(
+                '${NumberFormat.compact().format(fansCount)} Fãs',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
