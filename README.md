@@ -2,7 +2,7 @@
 
 Este repositório contém três projetos desenvolvidos utilizando Dart, referente a um trabalho da Universidade Tuiuti do Paraná. A seguir, você encontrará um guia passo a passo interativo para abrir o projeto em seu ambiente local.
 
-Para uma descrição técnica detalhada dos componentes utilizados nos protótipos, consulte o arquivo de [instruções](prova01/prova01.md).
+Para uma descrição técnica detalhada dos componentes utilizados nos protótipos, consulte o arquivo de [instruções](Prova01/prova01.md).
 
 
 ## Pré-requisitos
